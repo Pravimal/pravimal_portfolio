@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pravimal Hridhan | Portfolio</title>
+
+    <style>
+        :root {
+            --violet: #6C63FF;
+            --pink: #FF6FB5;
+            --cyan: #4DD0E1;
+            --gray: #5F6368;
+            --light: #F8F9FA;
+            --dark: #121212;
+            --bg-gradient: linear-gradient(135deg, #ffffff, #f3f0ff, #fef6fb);
+            --card-bg: #ffffff;
+            --text-main: #222222;
+            --text-sub: #444444;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #121212, #1a1528, #1c1017);
+            --card-bg: #1e1e1e;
+            --text-main: #f8f9fa;
+            --text-sub: #b3b3b3;
+            --nav-bg: rgba(18, 18, 18, 0.95);
+            --gray: #a0a0a0;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            box-shadow: 0 2px 15px var(--shadow);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--violet);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--violet);
+        }
+
+        /* Theme Switcher Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gray);
+            transition: fill 0.3s;
+        }
+
+        .theme-toggle:hover svg {
+            fill: var(--violet);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 50px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--violet);
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero h2 {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-sub);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 14px 35px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, var(--violet), var(--pink));
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, .4);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: var(--violet);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--pink), var(--cyan));
+            display: block;
+            margin: 12px auto 0;
+            border-radius: 20px;
+        }
+
+        /* Card Stylings */
+        .card-style {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* About */
+        .about-card {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: var(--text-sub);
+        }
+
+        /* Grid Frameworks */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 35px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px var(--shadow);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+        }
+
+        /* Skills Custom Colors */
+        .skills-grid .feature-card h3 { color: var(--pink); margin-bottom: 12px; }
+        .skills-grid .card-icon { background: rgba(255, 111, 181, 0.1); fill: var(--pink); }
+
+        /* Strengths Custom Colors */
+        .strengths .feature-card h3 { color: var(--cyan); margin-bottom: 12px; }
+        .strengths .card-icon { background: rgba(77, 208, 225, 0.1); fill: var(--cyan); }
+
+        .feature-card p {
+            color: var(--text-sub);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Education Timeline */
+        .timeline {
+            max-width: 850px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline-item {
+            background: var(--card-bg);
+            padding: 30px;
+            border-left: 6px solid var(--cyan);
+            margin-bottom: 25px;
+            border-radius: 0 20px 20px 0;
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .timeline-item h3 {
+            color: var(--violet);
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-card {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-subtitle {
+            color: var(--violet);
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-sub);
+            font-size: 1.05rem;
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--gray);
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--gray);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--violet);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Scroll Animations */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all .8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media(max-width:768px){
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .nav-right {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            section {
+                padding: 80px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Pravimal Hridhan</div>
+    <div class="nav-right">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#strengths">Strengths</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+            <svg viewBox="0 0 24 24">
+                <path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Pravimal Hridhan</h1>
+        <h2>4th Year ECE Student</h2>
+        <p>
+            Motivated and enthusiastic student with strong teamwork abilities, 
+            leadership qualities, and the capability to perform effectively under pressure. 
+            Passionate about learning, collaborating with teams, and contributing to 
+            successful project outcomes.
+        </p>
+        <a href="#about" class="btn">Explore Portfolio</a>
+    </div>
+</section>
+
+<section id="about" class="hidden">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-card card-style">
+        <p>
+            Hello! I'm <strong>Pravimal Hridhan</strong>, a dedicated 
+            <strong>4th Year Student</strong> who thrives in collaborative 
+            environments and values taking proactive responsibility in team activities. 
+            I believe that communication, deep dedication, and cohesive teamwork are the foundational pillars of success. 
+            My ability to remain calm under pressure allows me to systematically mitigate challenges 
+            efficiently while maintaining team productivity and critical project focus.
+        </p>
+    </div>
+</section>
+
+<section id="skills" class="hidden">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid grid-layout">
+        <div class="feature-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            </div>
+            <h3>Work Under Pressure</h3>
+            <p>Able to stay focused and deliver high-quality work even during critical situations and demanding, tight deadlines.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <h3>Teamwork</h3>
+            <p>Strong collaboration skills with an innate ability to connect and work effectively across highly diverse teams.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2.33c0-2.66-5.33-3.67-8-3.67z"/></svg>
+            </div>
+            <h3>Leadership Role</h3>
+            <p>Often steps up in cross-functional projects by organizing modern framework architectures, coordinating tasks, and supporting team execution.</p>
+        </div>
+    </div>
+</section>
+
+<section id="education" class="hidden">
+    <h2 class="section-title">Education</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3>12th Standard</h3>
+            <p>Completed in 2023</p>
+        </div>
+        <div class="timeline-item">
+            <h3>Bachelor's Degree</h3>
+            <p>Currently pursuing - 4th Year Student (ECE)</p>
+        </div>
+    </div>
+</section>
+
+<section id="strengths" class="hidden">
+    <h2 class="section-title">Strengths</h2>
+    <div class="strengths grid-layout">
+        <div class="feature-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+            </div>
+            <h3>Responsibility</h3>
+            <p>Takes deep ownership of technical tasks and consistently outputs positive momentum to guarantee team benchmarks are hit.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            </div>
+            <h3>Adaptability</h3>
+            <p>Fast-paced agile learner capable of rapidly pivoting into new technical stacks and changing landscapes seamlessly.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            </div>
+            <h3>Communication</h3>
+            <p>Maintains crisp, structured, and transparent operational interactions with workspace peers, engineers, and stakeholders.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="hidden">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-card card-style">
+        <h3>Pravimal Hridhan</h3>
+        <p class="contact-subtitle">4th Year Student</p>
+        
+        <div class="contact-details">
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>your-email@example.com</span>
+            </div>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>+91 XXXXX XXXXX</span>
+            </div>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <span>India</span>
+            </div>
+        </div>
+
+        <p class="quote">
+            "Dedicated to continuous learning, teamwork, and achieving excellence through commitment and collaboration."
+        </p>
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 Pravimal Hridhan | Portfolio Website
+</footer>
+
+<script>
+    // Intersection Observer Animation 
+    const observerOptions = {
+        root: null,
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".hidden").forEach(el => {
+        observer.observe(el);
+    });
+
+    // Dark/Light Theme Switching Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    
+    // Check local storage preference
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+</script>
+
+</body>
+</html>
